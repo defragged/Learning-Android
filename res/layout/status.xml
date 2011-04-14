@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/background">
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/titleStatus"
-    android:textSize="30sp" android:layout_margin="10dp"/>
-<TextView android:layout_gravity="right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" android:id="@+id/textCharsRemaining"></TextView>
-<EditText
-	android:layout_width="fill_parent"
-	android:id="@+id/editText"
-	android:hint="@string/hintText" android:layout_height="match_parent" android:layout_gravity="center_horizontal" android:layout_weight="1" android:maxLength="140" android:background="#cfff">
-</EditText>
-<Button
-	android:layout_width="match_parent"
-	android:id="@+id/buttonUpdate"
-	android:text="@string/buttonUpdate" android:textSize="20sp" android:layout_height="wrap_content">
-</Button>
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/background">
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:textSize="30sp"
+		android:layout_margin="10dp" android:text="@string/titleStatus" />
+	<TextView android:layout_gravity="right" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="TextView"
+		android:id="@+id/textCharsRemaining"></TextView>
+	<EditText android:layout_width="fill_parent" android:id="@+id/editText"
+		android:hint="@string/hintText" android:layout_height="match_parent"
+		android:layout_gravity="center_horizontal" android:layout_weight="1"
+		android:background="#cfff">
+	</EditText>
+	<Button android:layout_width="match_parent" android:id="@+id/buttonUpdate"
+		android:text="@string/buttonUpdate" android:textSize="20sp"
+		android:layout_height="wrap_content">
+	</Button>
 </LinearLayout>
