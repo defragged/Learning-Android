@@ -90,6 +90,9 @@ public class StatusActivity extends Activity implements OnClickListener,
 		}
 		if((MAX_CHARS - charCount) <= 0){
 			textCharsRemaining.setTextColor(Color.RED);
+			updateButton.setEnabled(false);
+		}else{
+			textCharsRemaining.setText(Color.GREEN);
 		}
 	}
 
