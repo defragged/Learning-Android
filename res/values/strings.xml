@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="titleStatus">Update Status</string>
+    <string name="app_name">Yamba</string>
+    <string name="hintText">Write something insightful…</string>
+    <string name="buttonUpdate">Update Status</string>
+</resources>
