@@ -4,4 +4,8 @@
     <string name="app_name">Yamba</string>
     <string name="hintText">Write something insightful…</string>
     <string name="buttonUpdate">Update Status</string>
+    <string name="titleUsername">Username</string>
+    <string name="titlePassword">Password</string>
+    <string name="titleApiRoot">API Root URL</string>
+    <string name="titlePrefs">Preferences</string>
 </resources>
