@@ -93,6 +93,7 @@ public class StatusActivity extends Activity implements OnClickListener,
 			updateButton.setEnabled(false);
 		}else{
 			textCharsRemaining.setText(Color.GREEN);
+			updateButton.setEnabled(true);
 		}
 	}
 
