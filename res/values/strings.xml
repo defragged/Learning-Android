@@ -8,4 +8,7 @@
     <string name="titlePassword">Password</string>
     <string name="titleApiRoot">API Root URL</string>
     <string name="titlePrefs">Preferences</string>
+    <string name="summaryUsername">Enter your Twitter Username</string>
+    <string name="summaryPassword">Enter your Twitter Password</string>
+    <string name="summaryURL">URL for your Twitter API compatible endpoint.</string>
 </resources>

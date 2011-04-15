@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference android:key="username" android:title="@string/titleUsername"></EditTextPreference>
-    <EditTextPreference android:key="password" android:title="@string/titlePassword" android:password="true"></EditTextPreference>
-    <EditTextPreference android:key="apiRoot" android:title="@string/titleApiRoot"></EditTextPreference>
+    <EditTextPreference android:key="username" android:title="@string/titleUsername" android:summary="@string/summaryUsername" android:defaultValue="student"></EditTextPreference>
+    <EditTextPreference android:key="password" android:title="@string/titlePassword" android:summary="@string/summaryPassword" android:password="true" android:defaultValue="password"></EditTextPreference>
+    <EditTextPreference android:key="apiRoot" android:title="@string/titleApiRoot" android:summary="@string/summaryURL" android:defaultValue="http://yamba.marakana.com/api"></EditTextPreference>
 </PreferenceScreen>
