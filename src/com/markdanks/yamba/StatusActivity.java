@@ -4,9 +4,12 @@ import winterwell.jtwitter.Twitter;
 import winterwell.jtwitter.TwitterException;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -21,11 +24,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class StatusActivity extends Activity implements OnClickListener,
-		TextWatcher {
+		TextWatcher, OnSharedPreferenceChangeListener {
 	public static final String TAG = "StatusActivity";
 	EditText editText;
 	TextView textCharsRemaining;
 	Button updateButton;
+	SharedPreferences prefs;
 	public static final int MAX_CHARS = 140;
 
 	Twitter twitter;
@@ -35,6 +39,8 @@ public class StatusActivity extends Activity implements OnClickListener,
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.status);
+
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 		editText = (EditText) findViewById(R.id.editText);
 		editText.addTextChangedListener(this);
@@ -68,13 +74,24 @@ public class StatusActivity extends Activity implements OnClickListener,
 		return true;
 	}
 
+	private Twitter getTwitter() {
+		if (twitter == null) {
+			twitter = new Twitter(prefs.getString("username", "student"),
+					prefs.getString("password", "password"));
+			twitter.setAPIRootUrl(prefs.getString("apiRoot",
+					"http://yamba.marakana.com/api"));
+		}
+
+		return twitter;
+	}
+
 	// Asynchronously posts to twitter
 	class PostToTwitter extends AsyncTask<String, Integer, String> {
 		// Called to initiate the background activity
 		@Override
 		protected String doInBackground(String... statuses) { //
 			try {
-				Twitter.Status status = twitter.updateStatus(statuses[0]);
+				Twitter.Status status = getTwitter().updateStatus(statuses[0]);
 				return status.text;
 			} catch (TwitterException e) {
 				Log.e(TAG, e.toString());
@@ -99,8 +116,10 @@ public class StatusActivity extends Activity implements OnClickListener,
 	}
 
 	public void onClick(View v) {
-		new PostToTwitter().execute(editText.getText().toString());
-		Log.d(TAG, "onClicked");
+		if (v == updateButton) {
+			new PostToTwitter().execute(editText.getText().toString());
+			Log.d(TAG, "onClicked");
+		}
 	}
 
 	public void afterTextChanged(Editable s) {
@@ -117,7 +136,7 @@ public class StatusActivity extends Activity implements OnClickListener,
 			updateButton.setEnabled(false);
 		} else {
 			// Re-enable the char count colour and re-enable the
-			textCharsRemaining.setText(Color.GREEN);
+			textCharsRemaining.setTextColor(Color.GREEN);
 			updateButton.setEnabled(true);
 		}
 	}
@@ -130,5 +149,12 @@ public class StatusActivity extends Activity implements OnClickListener,
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
+		// Replace the twitter object with one containing the new value
+		twitter = null;
+		twitter = getTwitter();
 	}
 }
