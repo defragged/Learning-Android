@@ -3,6 +3,7 @@ package com.markdanks.yamba;
 import winterwell.jtwitter.Twitter;
 import winterwell.jtwitter.TwitterException;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -47,11 +49,22 @@ public class StatusActivity extends Activity implements OnClickListener,
 		twitter = new Twitter("student", "password");
 		twitter.setAPIRootUrl("http://yamba.marakana.com/api");
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.itemPrefs:
+			// Launch the preferences activity
+			startActivity(new Intent(this, PrefsActivity.class));
+			break;
+		}
 		return true;
 	}
 
@@ -91,16 +104,19 @@ public class StatusActivity extends Activity implements OnClickListener,
 	}
 
 	public void afterTextChanged(Editable s) {
-		// TODO Auto-generated method stub
 		int charCount = editText.getText().length();
 		textCharsRemaining.setText(Integer.toString(MAX_CHARS - charCount));
-		if((MAX_CHARS - charCount) < 10){
+		if ((MAX_CHARS - charCount) < 10) {
+			// Warning: Yellow text when less than 10 chars remaining
 			textCharsRemaining.setTextColor(Color.YELLOW);
 		}
-		if((MAX_CHARS - charCount) <= 0){
+		if ((MAX_CHARS - charCount) <= 0) {
+			// Red when you can't post any more
+			// Also disable the button
 			textCharsRemaining.setTextColor(Color.RED);
 			updateButton.setEnabled(false);
-		}else{
+		} else {
+			// Re-enable the char count colour and re-enable the
 			textCharsRemaining.setText(Color.GREEN);
 			updateButton.setEnabled(true);
 		}
