@@ -4,8 +4,11 @@ import winterwell.jtwitter.Twitter;
 import winterwell.jtwitter.TwitterException;
 import android.app.Activity;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+=======
+>>>>>>> 38520a18ae83def1b7a76d1878a221ccf06ecce4
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -74,6 +77,7 @@ public class StatusActivity extends Activity implements OnClickListener,
 		return true;
 	}
 
+<<<<<<< HEAD
 	private Twitter getTwitter() {
 		if (twitter == null) {
 			twitter = new Twitter(prefs.getString("username", "student"),
@@ -85,6 +89,8 @@ public class StatusActivity extends Activity implements OnClickListener,
 		return twitter;
 	}
 
+=======
+>>>>>>> 38520a18ae83def1b7a76d1878a221ccf06ecce4
 	// Asynchronously posts to twitter
 	class PostToTwitter extends AsyncTask<String, Integer, String> {
 		// Called to initiate the background activity
@@ -136,7 +142,11 @@ public class StatusActivity extends Activity implements OnClickListener,
 			updateButton.setEnabled(false);
 		} else {
 			// Re-enable the char count colour and re-enable the
+<<<<<<< HEAD
 			textCharsRemaining.setTextColor(Color.GREEN);
+=======
+			textCharsRemaining.setText(Color.GREEN);
+>>>>>>> 38520a18ae83def1b7a76d1878a221ccf06ecce4
 			updateButton.setEnabled(true);
 		}
 	}
